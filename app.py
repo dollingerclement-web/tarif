@@ -4,17 +4,19 @@ import streamlit as st
 def calculer_tarif():
     st.set_page_config(page_title="Calculateur Chirouze", page_icon="🏡", layout="wide")
     st.title("Calculateur de Séjour Chirouze 🏡")
-    st.subheader("Déterminez le tarif de votre séjour")
+    st.subheader("Déterminez le montant de votre participation aux frais")
+     st.info("La chirouze est une maison familiale qui fonctionne grâce à la participation de ses usagers;nous vous remercions pour votre contribution. Vous pouvez effectuer un virement en utilisant l'IBAN suivant : ...")
 
     # --- ENTRÉES UTILISATEUR ---
     with st.sidebar:
         st.header("Paramètres du séjour")
         saison = st.selectbox("Saison", ["Été", "Intersaison", "Hiver"])
         nuits = st.number_input("Nombre de nuits", min_value=1, value=1)
-        adultes = st.number_input("Nombre d'adultes payants", min_value=0, value=0)
-        enfant = st.number_input("Nombre d'enfant/étudiants/situation difficile", min_value=0, value=0)
+        st.info("  ; le tarif adulte a été calculé pour garantir le bon fonctionnement. Néanmoins le coût ne doit pas être un obstacle. Pour les enfant ou les adultes qui en resentent le besoin nous proposons un tarif libre. A vous d'indiquer le montant de la nuitée que vous souhaitez utiliser pour la participation ")
+        adultes = st.number_input("Nombre d'adultes actifs payants", min_value=0, value=0)
+        enfant = st.number_input("tarif libre", min_value=0, value=0)
         
-        st.info("Indiquer le montant de la participation libre aux frais de la chirouze pour les enfants/étudiants/situation difficile")
+       
         try:
             choix_du_prix = float(st.text_input("Participation libre (Enfants/Étudiants/Précarité) souhaité / nuit/personne", "0"))
         except ValueError:
@@ -96,7 +98,7 @@ def calculer_tarif():
         prix_apres_reduc = 900/7*nuits
         explications.append(f"Plafond semaine appliqué : 900€ maximum")
 
-    if 15 <= nuits <= 30 and prix_apres_reduc > 700 and adulte <3 :
+    if 15 <= nuits <= 30 and prix_apres_reduc > 700 and adultes <3 :
         prix_apres_reduc = 700
         explications.append(f"Plafond semaine appliqué : 900€ maximum")
         
