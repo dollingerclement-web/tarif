@@ -96,6 +96,15 @@ def calculer_tarif():
         prix_apres_reduc = 900/7*nuits
         explications.append(f"Plafond semaine appliqué : 900€ maximum")
 
+    if 15 <= nuits <= 30 and prix_apres_reduc > 700 and adulte <3 :
+        prix_apres_reduc = 700
+        explications.append(f"Plafond semaine appliqué : 900€ maximum")
+        
+    if nuits > 30 and prix_apres_reduc > 600 and adulte <3 :
+        prix_apres_reduc = 700/30*nuits
+        explications.append(f"Plafond semaine appliqué : 900€ maximum")
+        
+
     # --- AFFICHAGE DES RÉSULTATS ---
     st.write("---")
     col1, col2 = st.columns(2)
