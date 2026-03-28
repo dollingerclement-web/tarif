@@ -93,7 +93,7 @@ def calculer_tarif():
         explications.append(f"Plafond groupe appliqué : 160€ / jour")
     
     if 7 <= nuits <= 15 and prix_apres_reduc > 900:
-        prix_apres_reduc = 900
+        prix_apres_reduc = 900/7*nuits
         explications.append(f"Plafond semaine appliqué : 900€ maximum")
 
     # --- AFFICHAGE DES RÉSULTATS ---
