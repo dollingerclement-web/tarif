@@ -5,7 +5,7 @@ def calculer_tarif():
     st.set_page_config(page_title="Calculateur Chirouze", page_icon="🏡", layout="wide")
     st.title("Calculateur de Séjour Chirouze 🏡")
     st.subheader("Déterminez le montant de votre participation aux frais")
-     st.info("La chirouze est une maison familiale qui fonctionne grâce à la participation de ses usagers;nous vous remercions pour votre contribution. Vous pouvez effectuer un virement en utilisant l'IBAN suivant : ...")
+    st.info("La chirouze est une maison familiale qui fonctionne grâce à la participation de ses usagers;nous vous remercions pour votre contribution. Vous pouvez effectuer un virement en utilisant l'IBAN suivant : ...")
 
     # --- ENTRÉES UTILISATEUR ---
     with st.sidebar:
