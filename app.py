@@ -18,7 +18,7 @@ def calculer_tarif():
         
        
         try:
-            choix_du_prix = float(st.text_input("Participation libre (Enfants/Étudiants/Précarité) souhaité / nuit/personne", "0"))
+            choix_du_prix = float(st.text_input("Participation libre/ nuit/personne", "0"))
         except ValueError:
             choix_du_prix = 0.0
         
