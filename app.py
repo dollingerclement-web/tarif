@@ -14,7 +14,7 @@ def calculer_tarif():
         nuits = st.number_input("Nombre de nuits", min_value=1, value=1)
         st.info("  Le tarif adulte actif a été calculé pour garantir le bon fonctionnement de la chirouze.  Pour les enfants ou les étudiants/adultes qui en resentent le besoin nous proposons un tarif libre. ")
         adultes = st.number_input("Nombre d'adultes actifs payants", min_value=0, value=0)
-        enfant = st.number_input("Nombre d'enfant (ou adulte en tarif libre))", min_value=0, value=0)
+        enfant = st.number_input("Nombre d'enfants (ou adultes en tarif libre))", min_value=0, value=0)
         
        
         try:
