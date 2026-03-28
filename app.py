@@ -115,7 +115,7 @@ def calculer_tarif():
         st.metric("Tarif calculé (Adultes)", f"{max(0.0, prix_apres_reduc):.2f} €")
 
     with col2:
-        st.metric("Participation libre (Enfants/Étudiants)", f"{max(0.0, participation_libre):.2f} €")
+        st.metric("Participation libre (Enfants/Étudiants/ect)", f"{max(0.0, participation_libre):.2f} €")
 
     total_final = max(0.0, prix_apres_reduc + participation_libre)
 
