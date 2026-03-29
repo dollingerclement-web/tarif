@@ -94,7 +94,7 @@ def calculer_tarif():
         explications = [explications[0]]  # Garder le tarif de base
         explications.append("Réduction Très Long Séjour (> 30 hors hiver) :"+ f"{montant_dégressif:.2f}" +" %(remplace les autres)")
     
-    elif nuits > 15  :
+    if nuits > 15  :
         prix_apres_reduc = sous_total * (1 - 0.20)
         explications = [explications[0]]  # Garder le tarif de base
         explications.append("Réduction Très Long Séjour (> 15 jours) : -20% (remplace les autres)")
