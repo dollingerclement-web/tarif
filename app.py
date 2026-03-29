@@ -1,5 +1,28 @@
 # Créé par clems, le 28/03/2026 en Python 3.7
 import streamlit as st
+def calculer_reduction_long_sejour(nuits, saison):
+    """
+    Calcule la réduction pour les longs séjours.
+    La réduction augmente avec le nombre de nuits (croissance du prix total).
+    """
+    if saison == "Hiver":
+        return 0  # Pas de réduction en hiver
+    
+    if nuits <= 15:
+        return 0  # Pas de réduction pour séjours courts
+    
+    # Réductions progressives et continues
+    if nuits <= 22:
+        # Entre 15 et 22 nuits : progression linéaire de 0% à 20%
+        reduction = 0.20 * (nuits - 15) / 7
+    elif nuits <= 30:
+        # Entre 22 et 30 nuits : progression de 20% à 35%
+        reduction = 0.20 + 0.15 * (nuits - 22) / 8
+    else:
+        # Au-delà de 30 nuits : 40% fixe
+        reduction = 0.40
+    
+    return reduction
 
 def calculer_tarif():
     st.set_page_config(page_title="Calculateur Chirouze", page_icon="🏡", layout="wide")
