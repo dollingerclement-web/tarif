@@ -16,7 +16,7 @@ def calculer_reduction_long_sejour(nuits, saison):
     
     # Réductions progressives et continues
     if nuits <= 15:
-        reduction = 0.10(nuits-11)/15+0.10 
+        reduction = 0.10*(nuits-11)/15+0.10 
     if nuits <= 22:
         # Entre 15 et 22 nuits : progression linéaire de 0% à 20%
         reduction = 0.20 
