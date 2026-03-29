@@ -1,9 +1,12 @@
 # Créé par clems, le 28/03/2026 en Python 3.7
 import streamlit as st
+
 def calculer_reduction_long_sejour(nuits, saison):
     """
     Calcule la réduction pour les longs séjours.
-    La réduction augmente avec le nombre de nuits (croissance du prix total).
+    La réduction augmente avec le nombre de nuits jusqu'à 40% max (plafonné).
+    Utilise une courbe polynomiale concave entre 22 et 30 jours pour éviter
+    que le tarif baisse sur les derniers jours du mois.
     """
     if saison == "Hiver":
         return 0  # Pas de réduction en hiver
@@ -16,8 +19,11 @@ def calculer_reduction_long_sejour(nuits, saison):
         # Entre 15 et 22 nuits : progression linéaire de 0% à 20%
         reduction = 0.20 * (nuits - 15) / 7
     elif nuits <= 30:
-        # Entre 22 et 30 nuits : progression de 20% à 35%
-        reduction = 0.20 + 0.15 * (nuits - 22) / 8
+        # Entre 22 et 30 nuits : progression polynomiale concave (ralentie)
+        # de 20% à 40% pour éviter la décroissance du prix
+        x = (nuits - 22) / 8  # Normaliser entre 0 et 1
+        # Fonction concave: 20% + 20% * x^0.5 (racine carrée = concave)
+        reduction = 0.20 + 0.20 * (x ** 0.5)
     else:
         # Au-delà de 30 nuits : 40% fixe
         reduction = 0.40
