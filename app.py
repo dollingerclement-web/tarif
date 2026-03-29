@@ -78,7 +78,7 @@ def calculer_tarif():
         explications.append("Réduction Séjour long (7-15 jours) : -10%")
 
     # 4. Appliquer les réductions cumulables
-    prix_apres_reduc = sous_total * (1 - reduction_totale)
+    prix_apres_reduc = sous_total *  reduction_totale
 
     # 5. Réductions TRÈS Long séjour (remplacent les précédentes si applicables)
     if nuits > 30 and saison == "Été":
