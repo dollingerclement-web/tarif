@@ -92,7 +92,7 @@ def calculer_tarif():
         montant_dégressif=0.025*nuits-0.35
         prix_apres_reduc = sous_total * (1 - montant_dégressif)
         explications = [explications[0]]  # Garder le tarif de base
-        explications.append("Réduction Très Long Séjour (> 30 jours en Été) :"+montant_dégressif+" %(remplace les autres)")
+        explications.append("Réduction Très Long Séjour (> 30 jours en Été) :"+ str(montant_dégressif) +" %(remplace les autres)")
     
     elif nuits > 15:
         prix_apres_reduc = sous_total * (1 - 0.20)
