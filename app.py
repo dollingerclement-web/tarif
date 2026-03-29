@@ -58,21 +58,23 @@ def calculer_tarif():
         détail_du_calcul=str(prix_unitaire) + "* (" +détail_du_calcul + "-"+ str(nuitees_offertes)+")"
 
     # 3. Calcul des réductions
-    reduction_totale = 0
+    reduction_totale = 1
 
     # Réduction étage du milieu (-15% si > 5 pers et pas Été)
     if etage_milieu and nb_personnes_etage > 5 and saison != "Été":
-        reduction_totale += 0.15
+        reduction_totale =  reduction_totale*0.85
         explications.append("Réduction Étage du milieu (> 5 pers) : -15%")
+         détail_du_calcul=str(0.9) + "* (" +détail_du_calcul + ")"
+      
 
     # Réduction Multi-familles
     if plusieurs_familles:
-        reduction_totale += 0.10
+        reduction_totale =reduction_totale*0.9
         explications.append("Réduction Multi-familles : -10%")
 
     # Réduction Durée Standard (7 à 15 jours)
     if 7 <= nuits <= 15:
-        reduction_totale += 0.10
+        reduction_totale =reduction_totale*0.9
         explications.append("Réduction Séjour long (7-15 jours) : -10%")
 
     # 4. Appliquer les réductions cumulables
