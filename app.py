@@ -55,7 +55,7 @@ def calculer_tarif():
     explications = [f"Tarif de base ({saison}) : {prix_unitaire}€ / nuit / adulte"]
     if nuitees_offertes > 0:
         explications.append(f"Services rendus : {nuitees_offertes} nuitées offertes (économie de {nuitees_offertes * prix_unitaire}€)")
-        détail_du_calcul=str(prix_unitaire) + "* (" +détail_du_calcul + "-"+ str(nuitees_offertes)+")"
+        détail_du_calcul=str(prix_unitaire)+"* (" +détail_du_calcul + "-"+str(nuitees_offertes)+")"
 
     # 3. Calcul des réductions
     reduction_totale = 1
@@ -64,7 +64,7 @@ def calculer_tarif():
     if etage_milieu and nb_personnes_etage > 5 and saison != "Été":
         reduction_totale =  reduction_totale*0.85
         explications.append("Réduction Étage du milieu (> 5 pers) : -15%")
-         détail_du_calcul=str(0.9) + "* (" +détail_du_calcul + ")"
+        détail_du_calcul=str(0.9) + "* (" +détail_du_calcul + ")"
       
 
     # Réduction Multi-familles
