@@ -46,7 +46,7 @@ def calculer_tarif():
 
     # Total de nuitées "théoriques" pour les adultes
     total_nuitees_base = adultes * nuits
-    détail_du_calcul=string(adultes)*string(nuits)
+    détail_du_calcul=str(adultes)*str(nuits)
 
     # 2. Gestion des services (Nuits offertes)
     nuitees_offertes = min(demi_journees, total_nuitees_base)
