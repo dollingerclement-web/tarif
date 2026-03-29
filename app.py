@@ -127,18 +127,22 @@ def calculer_tarif():
     if prix_par_jour > 160:
         prix_apres_reduc = 160 * nuits
         explications.append(f"Plafond groupe appliqué : 160€ / jour")
+        détail_du_calcul="plafond jour atteint"
     
     if 7 <= nuits <= 15 and prix_apres_reduc > 900:
         prix_apres_reduc = 900/7*nuits
         explications.append(f"Plafond semaine appliqué : 900€ maximum")
+        détail_du_calcul="900/7* "+ f"{nuits:.2f}"
 
     if 15 <= nuits <= 30 and prix_apres_reduc > 700 and adultes <3 :
         prix_apres_reduc = 700
         explications.append(f"Plafond semaine appliqué : 900€ maximum")
+        détail_du_calcul="700=plafond mois/étage atteint"
         
     if nuits > 30 and prix_apres_reduc > 600 and adultes <3 :
         prix_apres_reduc = 700/30*nuits
-        explications.append(f"Plafond semaine appliqué : 900€ maximum")
+        explications.append(f"Plafond mois étage : 700€ maximum")
+        détail_du_calcul="700/30* "+ f"{nuits:.2f}"
 
     # calcul de la participation libre
     participation_libre = nuits * enfant * choix_du_prix
