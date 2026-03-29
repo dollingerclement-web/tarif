@@ -50,13 +50,12 @@ def calculer_tarif():
     # 2. Gestion des services (Nuits offertes)
     nuitees_offertes = min(demi_journees, total_nuitees_base)
     nuitees_facturables = max(0, total_nuitees_base - nuitees_offertes)
-    if nuitees_offertes != 0 :
-         détail_du_calcul=détail_du_calcul + "-"+ str(nuitees_offertes)
-
+    
     sous_total = nuitees_facturables * prix_unitaire
     explications = [f"Tarif de base ({saison}) : {prix_unitaire}€ / nuit / adulte"]
     if nuitees_offertes > 0:
         explications.append(f"Services rendus : {nuitees_offertes} nuitées offertes (économie de {nuitees_offertes * prix_unitaire}€)")
+        détail_du_calcul=str(prix_unitaire) +"*("détail_du_calcul + "-"+ str(nuitees_offertes)+")"
 
     # 3. Calcul des réductions
     reduction_totale = 0
