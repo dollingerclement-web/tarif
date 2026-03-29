@@ -105,28 +105,13 @@ def calculer_tarif():
     # 4. Appliquer les réductions cumulables
     prix_apres_reduc = sous_total *  reduction_totale
 
-    # 5. Réductions TRÈS Long séjour (remplacent les précédentes si applicables)
-    if nuits > 30 and saison != "hiver":
-        prix_apres_reduc = sous_total * (1 - 0.40)
-        explications = [explications[0]]  # Garder le tarif de base
-        explications.append("Réduction Très Long Séjour hors hiver : -40% (remplace les autres)")
-        
-    if nuits > 22 and nuits <= 30  and saison != "hiver":
-        montant_dégressif=0.20 + 0.003125*(nuits-22)**2   #fonction choisie pour garder un tarif croissant
-        prix_apres_reduc = sous_total * (1 - montant_dégressif)
-        explications = [explications[0]]  # Garder le tarif de base
-        explications.append("Réduction Très Long Séjour hors hiver :"+ f"{montant_dégressif*100:.2f}" +" %(remplace les autres)")
-    
-    if nuits > 15 and nuits <= 22 :
-        prix_apres_reduc = sous_total * (1 - 0.20)
-        explications = [explications[0]]  # Garder le tarif de base
-        explications.append("Réduction Très Long Séjour hors hiver : -20% (remplace les autres)")
+    #5.Application des réductions long séjour remplace les réductions cumulables
 
-    if nuits > 11 and nuits <15 :
-        montant_dégressif=0.025*nuits-0.175
+     if reduction_long_sejour > 0:
+        prix_apres_reduc = sous_total * (1 - reduction_long_sejour)
         explications = [explications[0]]  # Garder le tarif de base
-        explications.append("Réduction Très Long Séjour (> 15 jours) : "+ f"{montant_dégressif*100:.2f}" +"% (remplace les autres)")
-
+        explications.append(f"Réduction Long Séjour : -{reduction_long_sejour*100:.2f}% (remplace les autres)")
+         
     # 6. Application des plafonds
     prix_par_jour = prix_apres_reduc / nuits if nuits > 0 else 0
     
