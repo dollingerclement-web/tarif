@@ -107,7 +107,7 @@ def calculer_tarif():
 
     #5.Application des réductions long séjour remplace les réductions cumulables
 
-     if reduction_long_sejour > 0:
+    if reduction_long_sejour > 0:
         prix_apres_reduc = sous_total * (1 - reduction_long_sejour)
         explications = [explications[0]]  # Garder le tarif de base
         explications.append(f"Réduction Long Séjour : -{reduction_long_sejour*100:.2f}% (remplace les autres)")
