@@ -22,7 +22,6 @@ def calculer_tarif():
         except ValueError:
             choix_du_prix = 0.0
         
-        participation_libre = nuits * enfant * choix_du_prix
 
         st.divider()
         st.header("Options et Réductions")
@@ -43,7 +42,7 @@ def calculer_tarif():
     # 1. Tarif de base
     tarifs_base = {"Été": 10, "Intersaison": 15, "Hiver": 20}
     prix_unitaire = tarifs_base[saison]
-
+    
     # Total de nuitées "théoriques" pour les adultes
     total_nuitees_base = adultes * nuits
     détail_du_calcul=str(adultes) +" *" +str(nuits)
@@ -51,6 +50,8 @@ def calculer_tarif():
     # 2. Gestion des services (Nuits offertes)
     nuitees_offertes = min(demi_journees, total_nuitees_base)
     nuitees_facturables = max(0, total_nuitees_base - nuitees_offertes)
+    if nuitees_offertes != 0
+         détail_du_calcul=détail_du_calcul + "-" str(nuitees_offertes)
 
     sous_total = nuitees_facturables * prix_unitaire
     explications = [f"Tarif de base ({saison}) : {prix_unitaire}€ / nuit / adulte"]
@@ -106,6 +107,9 @@ def calculer_tarif():
     if nuits > 30 and prix_apres_reduc > 600 and adultes <3 :
         prix_apres_reduc = 700/30*nuits
         explications.append(f"Plafond semaine appliqué : 900€ maximum")
+
+    # calcul de la participation libre
+    participation_libre = nuits * enfant * choix_du_prix
         
 
     # --- AFFICHAGE DES RÉSULTATS ---
