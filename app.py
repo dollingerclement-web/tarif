@@ -64,27 +64,36 @@ def calculer_tarif():
     if etage_milieu and nb_personnes_etage > 5 and saison != "Été":
         reduction_totale =  reduction_totale*0.85
         explications.append("Réduction Étage du milieu (> 5 pers) : -15%")
-        détail_du_calcul=str(0.9) + "* (" +détail_du_calcul + ")"
+        détail_du_calcul=str(0.85) + "* (" +détail_du_calcul + ")"
       
 
     # Réduction Multi-familles
     if plusieurs_familles:
         reduction_totale =reduction_totale*0.9
         explications.append("Réduction Multi-familles : -10%")
-
+        détail_du_calcul=str(0.9) + "* (" +détail_du_calcul + ")"
+    
     # Réduction Durée Standard (7 à 15 jours)
     if 7 <= nuits <= 15:
         reduction_totale =reduction_totale*0.9
         explications.append("Réduction Séjour long (7-15 jours) : -10%")
+        détail_du_calcul=str(0.9) + "* (" +détail_du_calcul + ")"
 
     # 4. Appliquer les réductions cumulables
     prix_apres_reduc = sous_total *  reduction_totale
 
     # 5. Réductions TRÈS Long séjour (remplacent les précédentes si applicables)
-    if nuits > 30 and saison == "Été":
+    if nuits > 30 and saison != "hiver":
         prix_apres_reduc = sous_total * (1 - 0.40)
         explications = [explications[0]]  # Garder le tarif de base
         explications.append("Réduction Très Long Séjour (> 30 jours en Été) : -40% (remplace les autres)")
+        
+    if nuits > 22 and nuits < 30  and saison != "hiver":
+        montant_dégressif=0.025*nuits-0.35
+        prix_apres_reduc = sous_total * (1 - montant_dégressif)
+        explications = [explications[0]]  # Garder le tarif de base
+        explications.append("Réduction Très Long Séjour (> 30 jours en Été) :"+montant_dégressif+" %(remplace les autres)")
+    
     elif nuits > 15:
         prix_apres_reduc = sous_total * (1 - 0.20)
         explications = [explications[0]]  # Garder le tarif de base
