@@ -46,6 +46,7 @@ def calculer_tarif():
 
     # Total de nuitées "théoriques" pour les adultes
     total_nuitees_base = adultes * nuits
+    détail_du_calcul=string(adultes)*string(nuits)
 
     # 2. Gestion des services (Nuits offertes)
     nuitees_offertes = min(demi_journees, total_nuitees_base)
@@ -117,12 +118,12 @@ def calculer_tarif():
     with col2:
         st.metric("Participation libre (Enfants/Étudiants/ect)", f"{max(0.0, participation_libre):.2f} €")
 
-    total_final = max(0.0, prix_apres_reduc + participation_libre)
+        total_final = max(0.0, prix_apres_reduc + participation_libre)
 
     st.subheader("Détails du calcul :")
     for item in explications:
         st.write(f"✅ {item}")
-
+    st.caption(détail_du_calcul)
     st.divider()
     st.success(f"### Montant final total : **{total_final:.2f} €**")
 
