@@ -88,13 +88,13 @@ def calculer_tarif():
         explications = [explications[0]]  # Garder le tarif de base
         explications.append("Réduction Très Long Séjour hors hiver : -40% (remplace les autres)")
         
-    if nuits > 22 and nuits < 30  and saison != "hiver":
+    if nuits > 22 and nuits <= 30  and saison != "hiver":
         montant_dégressif=0.025*nuits-0.35
         prix_apres_reduc = sous_total * (1 - montant_dégressif)
         explications = [explications[0]]  # Garder le tarif de base
         explications.append("Réduction Très Long Séjour hors hiver :"+ f"{montant_dégressif:.2f}" +" %(remplace les autres)")
     
-    if nuits > 15 and nuits <22 :
+    if nuits > 15 and nuits <= 22 :
         prix_apres_reduc = sous_total * (1 - 0.20)
         explications = [explications[0]]  # Garder le tarif de base
         explications.append("Réduction Très Long Séjour hors hiver : -20% (remplace les autres)")
