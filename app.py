@@ -55,7 +55,7 @@ def calculer_tarif():
     explications = [f"Tarif de base ({saison}) : {prix_unitaire}€ / nuit / adulte"]
     if nuitees_offertes > 0:
         explications.append(f"Services rendus : {nuitees_offertes} nuitées offertes (économie de {nuitees_offertes * prix_unitaire}€)")
-        détail_du_calcul=str(prix_unitaire) +"*("détail_du_calcul + "-"+ str(nuitees_offertes)+")"
+        détail_du_calcul=str(prix_unitaire) + "* (" +détail_du_calcul + "-"+ str(nuitees_offertes)+")"
 
     # 3. Calcul des réductions
     reduction_totale = 0
