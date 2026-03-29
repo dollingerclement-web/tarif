@@ -119,7 +119,7 @@ def calculer_tarif():
         prix_apres_reduc = sous_total * (1 - reduction_long_sejour)
         explications = [explications[0]]  # Garder le tarif de base
         explications.append(f"Réduction Long Séjour : -{reduction_long_sejour*100:.2f}% (remplace les autres)")
-        détail_du_calcul=-{reduction_long_sejour:.2f} + "* (" +détail_du_calcul + ")"
+        détail_du_calcul="-{reduction_long_sejour:.2f}" + "* (" +détail_du_calcul + ")"
         
     # 6. Application des plafonds
     prix_par_jour = prix_apres_reduc / nuits if nuits > 0 else 0
