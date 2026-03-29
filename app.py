@@ -92,7 +92,7 @@ def calculer_tarif():
         montant_dégressif=0.025*nuits-0.35
         prix_apres_reduc = sous_total * (1 - montant_dégressif)
         explications = [explications[0]]  # Garder le tarif de base
-        explications.append("Réduction Très Long Séjour hors hiver :"+ f"{montant_dégressif:.2f}" +" %(remplace les autres)")
+        explications.append("Réduction Très Long Séjour hors hiver :"+ f"{montant_dégressif*100:.2f}" +" %(remplace les autres)")
     
     if nuits > 15 and nuits <= 22 :
         prix_apres_reduc = sous_total * (1 - 0.20)
@@ -102,7 +102,7 @@ def calculer_tarif():
     if nuits > 11 and nuits <15 :
         montant_dégressif=0.025*nuits-0.175
         explications = [explications[0]]  # Garder le tarif de base
-        explications.append("Réduction Très Long Séjour (> 15 jours) : "+ f"{montant_dégressif:.2f}" +"% (remplace les autres)")
+        explications.append("Réduction Très Long Séjour (> 15 jours) : "+ f"{montant_dégressif*100:.2f}" +"% (remplace les autres)")
 
     # 6. Application des plafonds
     prix_par_jour = prix_apres_reduc / nuits if nuits > 0 else 0
