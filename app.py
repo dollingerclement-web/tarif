@@ -122,7 +122,7 @@ def calculer_tarif():
     # Réduction Durée Standard (7 à 15 jours)
     if 7 <= nuits <= 15:
         reduction_totale =reduction_totale*0.9
-        explications.append("Réduction Séjour long (7-15 jours) : -10%")
+        explications.append("Réduction Semaine complète : -10%")
         détail_du_calcul=str(0.9) + "* (" +détail_du_calcul + ")"
 
     # 4. Appliquer les réductions cumulables
@@ -138,33 +138,36 @@ def calculer_tarif():
 
     # 6. Application des plafonds
     prix_par_jour = prix_apres_reduc / nuits if nuits > 0 else 0
-
+    #plafond  jour
     if prix_par_jour > 160:
         prix_apres_reduc = 160 * nuits
         explications.append(f"Plafond groupe appliqué : 160€ / jour")
         détail_du_calcul="plafond jour atteint"
-
+        
+    #plafond  semaine
     if 7 >= nuits and prix_apres_reduc > 900:
         prix_apres_reduc = 900
         explications.append(f"Plafond semaine dépassé passage au tarif semaine : 900€ /semaine")
         détail_du_calcul="900=plafond"
-
+    #plafond  semaine étendu 
     if 7 <= nuits <= 15 and prix_apres_reduc > 900:
         prix_apres_reduc = 900/7*nuits
         explications.append(f"Plafond semaine dépassé passage au tarif semaine : 900€ /semaine")
         détail_du_calcul="900/7* "+ f"{nuits:.2f}"
-
+        
+    #plafond couple mois 
     if 15 <= nuits <= 30 and prix_apres_reduc > 700 and adultes <3 :
         prix_apres_reduc = 700
         explications.append(f"Plafond /mois /étage/dépassé passage au tarif mensuel 700€/mois")
         détail_du_calcul="700=plafond mois/étage atteint"
-
+        
+     #plafond couple mois 
     if nuits > 30 and prix_apres_reduc > 600 and adultes <3 :
         prix_apres_reduc = 700/30*nuits
         explications.append(f"Plafond /mois /étage/dépassé passage au tarif mensuel 700€/mois")
         détail_du_calcul="700/30* "+ f"{nuits:.2f}"
 
-    # calcul de la participation libre
+    # 7. calcul de la participation libre
     participation_libre = nuits * enfant * choix_du_prix
 
 
