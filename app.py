@@ -46,7 +46,7 @@ def calculer_tarif():
     col1, col2, = st.columns(2)
     with col1:
         saison = st.selectbox("Saison", ["Été (sans chauffage) ", "Intersaison(hors Hiver avec chauffage)", "Hiver(du 21/11 au 21/03)"])
-    with col2:/
+    with col2:
         nuits = st.number_input("Nombre de nuits", min_value=1, value=1)
     #deuxième ligne participants
     st.info("  Le tarif adulte actif a été) calculé pour garantir le bon fonctionnement de la chirouze.  Pour les enfants ou les étudiants/adultes qui en ressentent le besoin nous proposons un tarif libre. ")
