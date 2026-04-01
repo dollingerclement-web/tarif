@@ -8,8 +8,8 @@ def calculer_reduction_long_sejour(nuits, saison):
     Utilise une courbe polynomiale concave entre 22 et 30 jours pour éviter
     que le tarif baisse sur les derniers jours du mois.
     """
-    if saison == "Hiver":
-        return 0  # Pas de réduction en hiver
+    if saison == "Hiver(du 21/11 au 21/03)":
+        return 0  # Pas de réduction en Hiver(du 21/11 au 21/03)
 
     if nuits <= 11:
         return 0  # Pas de réduction pour séjours courts
@@ -45,11 +45,11 @@ def calculer_tarif():
     # Première ligne de paramètres
     col1, col2, = st.columns(2)
     with col1:
-        saison = st.selectbox("Saison", ["Été (sans chauffage)", "Intersaison(hors hiver avec chauffage)", "Hiver(du 21/11 au 21/03)"])
+        saison = st.selectbox("Saison", ["Été (sans chauffage) ", "Intersaison(hors Hiver avec chauffage)", "Hiver(du 21/11 au 21/03)"])
     with col2:/
         nuits = st.number_input("Nombre de nuits", min_value=1, value=1)
     #deuxième ligne participants
-    st.info("  Le tarif adulte actif a été calculé pour garantir le bon fonctionnement de la chirouze.  Pour les enfants ou les étudiants/adultes qui en ressentent le besoin nous proposons un tarif libre. ")
+    st.info("  Le tarif adulte actif a été) calculé pour garantir le bon fonctionnement de la chirouze.  Pour les enfants ou les étudiants/adultes qui en ressentent le besoin nous proposons un tarif libre. ")
     col1, col2,col3 = st.columns(3)
     with col1:
         adultes = st.number_input("Nombre d'adultes actifs payants", min_value=0, value=0)
@@ -86,7 +86,7 @@ def calculer_tarif():
     # --- LOGIQUE DE CALCUL ---
 
     # 1. Tarif de base
-    tarifs_base = {"Été": 10, "Intersaison": 15, "Hiver": 20}
+    tarifs_base = {"Été (sans chauffage)": 10, "Intersaison(hors Hiver avec chauffage)": 15, "Hiver(du 21/11 au 21/03)": 20}
     prix_unitaire = tarifs_base[saison]
 
     # Total de nuitées "théoriques" pour les adultes
@@ -107,7 +107,7 @@ def calculer_tarif():
     reduction_totale = 1
 
     # Réduction étage du milieu (-15% si > 5 pers et pas Été)
-    if etage_milieu and nb_personnes_etage > 5 and saison != "Été":
+    if etage_milieu and nb_personnes_etage > 5 and saison != "Été (sans chauffage)":
         reduction_totale =  reduction_totale*0.85
         explications.append("Réduction Étage du milieu (> 5 pers) : -15%")
         détail_du_calcul=str(0.85) + "* (" +détail_du_calcul + ")"
