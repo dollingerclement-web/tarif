@@ -11,11 +11,15 @@ def calculer_reduction_long_sejour(nuits, saison):
     if saison == "Hiver(du 21/11 au 21/03)":
         return 0  # Pas de réduction en Hiver(du 21/11 au 21/03)
 
-    if nuits <= 11:
+    if nuits <= 15:
         return 0  # Pas de réduction pour séjours courts
 
     # Réductions progressives et continues
-    if nuits <= 15:
+    if 7 <= nuits <= 11:
+        reduction_totale =reduction_totale*0.9
+        explications.append("Réduction Semaine complète : -10%")
+        détail_du_calcul=str(0.9) + "* (" +détail_du_calcul + ")"
+    elif nuits <= 15:
         reduction = 0.10*(nuits-11)/4+0.10
     elif nuits <= 22:
         # Entre 15 et 22 nuits : progression linéaire de 0% à 20%
@@ -91,7 +95,7 @@ def calculer_tarif():
 
     # Total de nuitées "théoriques" pour les adultes
     total_nuitees_base = adultes * nuits
-    détail_du_calcul=str(adultes) +" *" +str(nuits)
+    détail_du_calcul_0=str(adultes) +" *" +str(nuits)
 
     # 2. Gestion des services (Nuits offertes)
     nuitees_offertes = min(demi_journees, total_nuitees_base)
@@ -101,8 +105,9 @@ def calculer_tarif():
     explications = [f"Tarif de base ({saison}) : {prix_unitaire}€ / nuit / adulte"]
     if nuitees_offertes > 0:
         explications.append(f"Services rendus : {nuitees_offertes} nuitées offertes (économie de {nuitees_offertes * prix_unitaire}€)")
-    détail_du_calcul=str(prix_unitaire)+"* (" +détail_du_calcul + "-"+str(nuitees_offertes)+")"
-
+    détail_du_calcul_0=str(prix_unitaire)+"* (" +détail_du_calcul_0 + "-"+str(nuitees_offertes)+")"
+    détail_du_calcul=détail_du_calcul_0
+    
     # 3. Calcul des réductions
     reduction_totale = 1
 
@@ -111,19 +116,24 @@ def calculer_tarif():
         reduction_totale =  reduction_totale*0.85
         explications.append("Réduction Étage du milieu (> 5 pers) : -15%")
         détail_du_calcul=str(0.85) + "* (" +détail_du_calcul + ")"
+    
+    #réduction séjour connecté
+    if séjour_connecté  and saison == "Hiver(du 21/11 au 21/03)":
+        reduction_totale =  reduction_totale*0.90
+        explications.append("Réduction Étage du milieu (> 5 pers) : -15%")
+        détail_du_calcul=str(0.90) + "* (" +détail_du_calcul + ")"
 
-
-    # Réduction Multi-familles
+    # Réduction Réunion de famille
     if plusieurs_familles:
         reduction_totale =reduction_totale*0.9
         explications.append("Réduction Multi-familles : -10%")
         détail_du_calcul=str(0.9) + "* (" +détail_du_calcul + ")"
-
-    # Réduction Durée Standard (7 à 15 jours)
-    if 7 <= nuits <= 15:
-        reduction_totale =reduction_totale*0.9
-        explications.append("Réduction Semaine complète : -10%")
-        détail_du_calcul=str(0.9) + "* (" +détail_du_calcul + ")"
+    
+    #plafond des réduction à 20%
+    if reduction_totale<0.8 and saison == "Hiver(du 21/11 au 21/03)":
+        reduction_totale=0.8
+        explications.append("plafond des réductions hiver atteint 20% max")
+        détail_du_calcul=str(0.8) + "* (" +détail_du_calcul_0 + ")"
 
     # 4. Appliquer les réductions cumulables
     prix_apres_reduc = sous_total *  reduction_totale
