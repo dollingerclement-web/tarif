@@ -78,7 +78,7 @@ def calculer_tarif():
             nb_personnes_etage = st.number_input("Si oui, combien de pers. ?", min_value=1, value=1)
         else:
             nb_personnes_etage = 0
-         séjour_connecté= st.checkbox("séjour inclu dans une période discontinu d'occupation hivernale supérieur à 15 jours)
+         séjour_connecté= st.checkbox("séjour inclu dans une période discontinu d'occupation hivernale supérieur à 15 jours")
         
     with col_b:
         plusieurs_familles = st.checkbox("Réunion familiale (on se retrouve entre cousins, frère et sœur...etc)")
