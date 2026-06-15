@@ -48,7 +48,7 @@ def calculer_tarif():
     # Première ligne de paramètres
     col1, col2, = st.columns(2)
     with col1:
-        saison = st.selectbox("Saison", ["Été (sans chauffage) ", "Intersaison(hors Hiver avec chauffage)", "Hiver(du 21/11 au 21/03)"])
+        saison = st.selectbox("Saison", ["Été (sans chauffage)", "Intersaison(hors Hiver avec chauffage)", "Hiver(du 21/11 au 21/03)"])
     with col2:
         nuits = st.number_input("Nombre de nuits", min_value=1, value=1)
     #deuxième ligne participants
