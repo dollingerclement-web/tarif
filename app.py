@@ -11,13 +11,12 @@ def calculer_reduction_long_sejour(nuits, saison):
     if saison == "Hiver(du 21/11 au 21/03)":
         return 0  # Pas de réduction en Hiver(du 21/11 au 21/03)
 
-    if nuits <= 15:
+    if nuits <= 7:
         return 0  # Pas de réduction pour séjours courts
 
     # Réductions progressives et continues
     if 7 <= nuits <= 11:
-        reduction_totale =reduction_totale*0.9
-        explications.append("Réduction Semaine complète : -10%")
+        reduction =reduction*0.9
         détail_du_calcul=str(0.9) + "* (" +détail_du_calcul + ")"
     elif nuits <= 15:
         reduction = 0.10*(nuits-11)/4+0.10
