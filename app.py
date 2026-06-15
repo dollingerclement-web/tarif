@@ -72,11 +72,14 @@ def calculer_tarif():
 
     col_a, col_b,col_c = st.columns([1,1,1])
     with col_a:
-        etage_milieu = st.checkbox("Logement étage du milieu")
+        st.write("réduction d'hiver")
+        etage_milieu = st.checkbox("Logement à l'étage du milieu")
         if etage_milieu:
             nb_personnes_etage = st.number_input("Si oui, combien de pers. ?", min_value=1, value=1)
         else:
             nb_personnes_etage = 0
+         séjour_connecté= st.checkbox("séjour inclu dans une période discontinu d'occupation hivernale supérieur à 15 jours)
+        
     with col_b:
         plusieurs_familles = st.checkbox("Réunion familiale (on se retrouve entre cousins, frère et sœur...etc)")
 
