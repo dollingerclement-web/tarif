@@ -122,7 +122,7 @@ def calculer_tarif():
     #réduction séjour connecté
     if séjour_connecté  and saison == "Hiver(du 21/11 au 21/03)":
         reduction_totale =  reduction_totale*0.90
-        explications.append("Réduction Étage du milieu (> 5 pers) : -15%")
+        explications.append("Réduction séjour connecté : -10%")
         détail_du_calcul=str(0.90) + "* (" +détail_du_calcul + ")"
 
     # Réduction Réunion de famille
